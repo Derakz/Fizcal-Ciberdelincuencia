@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fizcal Ciberdelincuencia | Fizcal Suite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Iconos Fizcal Suite -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- DOCX -->
+  <script src="https://unpkg.com/pizzip@3.1.5/dist/pizzip.min.js"></script>
+  <script src="libs/docxtemplater.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <img src="icon-192.png" alt="Fizcal Suite" class="brand-icon">
+    <div class="brand-text">
+      <h1>Fizcal Ciberdelincuencia</h1>
+      <p>Módulo de <strong>Fizcal Suite</strong></p>
+    </div>
+  </div>
+
+  <button id="toggleTheme" title="Modo oscuro">🌙</button>
+</header>
+
+<main class="container">
+
+  <!-- BLOQUE 1: CARGA DE CASO -->
+  <section class="card">
+    <h2>📂 Fuente del caso fiscal</h2>
+
+    <label class="file-upload">
+      ⬆️ Seleccionar archivo PDF
+      <input type="file" id="pdfInput" accept="application/pdf" />
+    </label>
+
+    <button id="btnTextoManual" class="link-btn">
+      ✏️ Ingresar texto manualmente
+    </button>
+
+    <textarea id="caseInput" class="hidden"
+      placeholder="Pegue aquí el texto del caso fiscal…"></textarea>
+  </section>
+
+  <!-- BLOQUE 2: DATOS DE APOYO -->
+  <section class="card">
+    <h2>🧠 Datos adicionales (opcional)</h2>
+    <textarea id="datosApoyo" class="small"
+      placeholder="Ejemplo:
+Remitente: Comisaría PNP San Borja
+Oficio N.º 123-2025
+Mes del hecho: agosto 2025"></textarea>
+
+    <p class="hint">
+      Use este campo solo si algún dato no es claro en el PDF.
+    </p>
+  </section>
+
+  <!-- BLOQUE 3: TIPO DE DISPOSICIÓN -->
+  <section class="card">
+    <h2>📄 Tipo de disposición</h2>
+
+    <label class="radio-card">
+      <input type="radio" name="tipo" value="apertura" checked />
+      Disposición de Apertura – Fraude Informático
+    </label>
+
+    <label class="radio-card">
+      <input type="radio" name="tipo" value="archivo_monto" />
+      Disposición de Archivo Liminar – Monto Mínimo
+    </label>
+  </section>
+
+  <!-- BLOQUE 4: ACCIÓN -->
+  <section class="actions">
+    <button id="btnGenerar" class="primary">
+      ⚙️ Generar documento Word
+    </button>
+  </section>
+
+  <!-- BLOQUE 5: ESTADO -->
+  <section class="card">
+    <h2>📊 Estado</h2>
+    <pre id="estado">Esperando acción…</pre>
+  </section>
+
+</main>
+
+<footer>
+  <small>
+    © 2026 Fizcal Suite. Todos los derechos reservados.<br />
+    Software privado de apoyo al trabajo fiscal.<br />
+    Creado por Jhonathan Anthony Andres Barba.
+  </small>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

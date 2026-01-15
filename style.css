@@ -1,0 +1,285 @@
+/**************************************
+ * VARIABLES DE MARCA (FIJAS)
+ **************************************/
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --text: #222;
+  --muted: #666;
+
+  /* Marca institucional (NO cambia en dark) */
+  --primary: #1f3c88;
+  --primary-dark: #162a60;
+
+  --radius: 8px;
+  --shadow: 0 2px 6px rgba(0,0,0,.08);
+  --transition-fast: 0.2s ease;
+}
+
+/**************************************
+ * MODO OSCURO (SIN TOCAR MARCA)
+ **************************************/
+body.dark {
+  --bg: #1c1f26;
+  --card: #2a2f3a;
+  --text: #e6e6e6;
+  --muted: #aaa;
+}
+
+/**************************************
+ * BASE
+ **************************************/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  color: var(--text);
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+/**************************************
+ * HEADER (MARCA FIJA)
+ **************************************/
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 20px;   /* 🔑 reduce altura */
+}
+
+.app-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.app-header button:hover {
+  opacity: 0.8;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-text h1 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.brand-text p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.2;
+  opacity: 0.85;
+}
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+#toggleTheme {
+  font-size: 16px;
+}
+
+/**************************************
+ * CONTENEDOR PRINCIPAL
+ **************************************/
+.container {
+  max-width: 760px;              /* más compacto y profesional */
+  margin: 28px auto 48px;
+  padding: 0 16px;
+}
+
+/**************************************
+ * TARJETAS
+ **************************************/
+.card {
+  background: var(--card);
+  padding: 20px;
+  margin-bottom: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/**************************************
+ * TEXTAREAS
+ **************************************/
+textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  resize: vertical;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+textarea.small {
+  min-height: 90px;
+}
+
+body.dark textarea {
+  background: #1f232b;
+  color: #e6e6e6;
+  border-color: #444;
+}
+
+/**************************************
+ * UTILIDADES
+ **************************************/
+.hidden {
+  display: none;
+}
+
+/**************************************
+ * SUBIDA DE ARCHIVOS
+ **************************************/
+.file-upload {
+  display: inline-block;
+  padding: 10px 14px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+
+  transition: background-color var(--transition-fast);
+}
+
+.file-upload:hover {
+  background: var(--primary-dark);
+}
+
+.file-upload input {
+  display: none;
+}
+
+/**************************************
+ * BOTÓN LINK
+ **************************************/
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 13px;
+
+  transition: opacity var(--transition-fast);
+}
+
+.link-btn:hover {
+  opacity: 0.8;
+}
+
+/**************************************
+ * RADIO CARDS (MEJORADAS)
+ **************************************/
+.radio-card {
+  display: block;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.radio-card:hover {
+  border-color: var(--primary);
+}
+
+body.dark .radio-card {
+  border-color: #444;
+}
+
+/**************************************
+ * ACCIONES / CTA
+ **************************************/
+.actions {
+  text-align: center;
+  margin: 32px 0;
+}
+
+.primary {
+  padding: 14px 22px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    transform 0.1s ease;
+}
+
+.primary:hover {
+  background: var(--primary-dark);
+}
+
+.primary:active {
+  transform: scale(0.97);
+}
+
+/**************************************
+ * BLOQUE ESTADO / PRE
+ **************************************/
+pre {
+  background: rgba(0,0,0,0.06);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+body.dark pre {
+  background: rgba(255,255,255,0.05);
+}
+
+/**************************************
+ * FOOTER (DISCRETO)
+ **************************************/
+footer {
+  text-align: center;
+  padding: 24px 12px 12px;
+  color: var(--muted);
+  font-size: 12px;
+  opacity: 0.6;
+
+  transition: color var(--transition-fast);
+}
