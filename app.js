@@ -4,7 +4,8 @@
 const OPENAI_MODEL = "gpt-4.1-mini";
 
 const TEMPLATES = {
-  apertura: "plantilla_apertura_fraude.docx",
+  apertura_fraude: "plantilla_apertura_fraude.docx",
+  apertura_suplantacion: "plantilla_apertura_suplantacion.docx",
   archivo_monto: "plantilla_archivo_monto_minimo.docx"
 };
 
@@ -129,7 +130,7 @@ function limpiarJSON(respuesta) {
 }
 
 /**************************************
- * PROMPT EXTRACTOR (HECHOS PUROS)
+ * PROMPT EXTRACTOR
  **************************************/
 function construirPromptExtractor(texto) {
   return `
@@ -146,11 +147,15 @@ REGLAS OBLIGATORIAS:
 - El campo "remitente" debe contener SOLO la ENTIDAD (no personas).
 
 REGLA ESPECIAL PARA EL CAMPO "hechos":
-- El campo "hechos" debe contener ÚNICAMENTE una narración objetiva y cronológica.
-- NO debe incluir calificación jurídica, conclusiones ni interpretaciones.
+- El campo "hechos" debe contener una narración objetiva, clara y continua.
+- Debe redactarse en uno o dos párrafos como un relato fluido, no como una lista de eventos.
+- Evita enumeraciones, cortes excesivos o frases telegráficas.
+- Mantén un estilo narrativo similar al usado en disposiciones fiscales.
+- NO incluir calificación jurídica, conclusiones ni interpretaciones.
 - NO usar expresiones como: "presuntamente", "se habría", "configuraría",
   "constituiría", "delito", "fraude", "manipulación", "ilícito".
-- Limítate a describir lo ocurrido, cuándo ocurrió y cómo ocurrió.
+- Limítate a describir lo ocurrido, cuándo ocurrió y cómo ocurrió, con coherencia narrativa.
+
 
 FORMATO:
 {
@@ -277,6 +282,16 @@ btnGenerar.onclick = async () => {
   try {
     estado.textContent = "⏳ Generando documento…";
 
+    function extraerRemitenteManual(textoApoyo) {
+  if (!textoApoyo) return "";
+
+  const match = textoApoyo.match(/remitente\s*:\s*(.+)/i);
+  if (match && match[1]) {
+    return match[1].trim();
+  }
+
+  return "";
+}
     const tipo = document.querySelector("input[name='tipo']:checked").value;
 
     const textoBase = caseInput.value || "";
@@ -286,6 +301,11 @@ btnGenerar.onclick = async () => {
       textoBase + "\n\nDATOS ADICIONALES (si los hubiera):\n" + apoyo;
 
     const datos = await ejecutarExtractor(textoFinal);
+    // 🔴 PRIORIDAD AL REMITENTE MANUAL
+    const remitenteManual = extraerRemitenteManual(apoyo);
+      if (remitenteManual) {
+    datos.remitente = aFormatoTitulo(remitenteManual);
+}
     await generarWord(datos, tipo);
 
     estado.textContent = "✅ Documento generado correctamente.";
