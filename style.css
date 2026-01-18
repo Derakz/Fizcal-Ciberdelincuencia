@@ -283,3 +283,69 @@ footer {
 
   transition: color var(--transition-fast);
 }
+
+/* ==============================
+   SELECTORES – FASE 1
+   ============================== */
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #ccc);
+  background-color: var(--card-bg, #fff);
+  color: var(--text-color, #222);
+  font-size: 0.95rem;
+}
+
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+body.dark select {
+  background-color: #1e1e1e;
+  color: #eaeaea;
+  border-color: #333;
+}
+
+/* ==============================
+   INPUTS DE TEXTO – FASE INSTITUCIONAL
+   ============================== */
+
+.card input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #2f3b52);
+  background-color: var(--card-bg, #ffffff);
+  color: var(--text-color, #1f2937);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Focus discreto, institucional */
+.card input[type="text"]:focus {
+  border-color: #3b82f6; /* azul fiscal */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* Placeholder sobrio */
+.card input[type="text"]::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Modo oscuro */
+body.dark .card input[type="text"] {
+  background-color: #1e1e1e;
+  color: #e5e7eb;
+  border-color: #374151;
+}
+
+body.dark .card input[type="text"]::placeholder {
+  color: #6b7280;
+}

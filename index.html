@@ -70,34 +70,64 @@ Mes del hecho: agosto 2025"></textarea>
     </p>
   </section>
 
-  <!-- BLOQUE 3: TIPO DE DISPOSICIÓN -->
+  <!-- BLOQUE 3: DESPACHO FISCAL -->
   <section class="card">
-    <h2>📄 Tipo de disposición</h2>
+  <h2>🏛️ Despacho fiscal</h2>
 
-    <label class="radio-card">
-      <input type="radio" name="tipo" value="apertura_fraude" checked />
-      Disposición de Apertura – Fraude Informático
-    </label>
+  <select id="despachoSelect">
+    <option value="">Seleccione despacho</option>
+  </select>
 
-    <label class="radio-card">
-      <input type="radio" name="tipo" value="apertura_suplantacion" checked />
-      Disposición de Apertura – Suplantación de Identidad
-    </label>
+  <label class="hint" style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+    <input type="checkbox" id="chkRecordarDespacho">
+    Recordar este despacho
+  </label>
 
-    <label class="radio-card">
-      <input type="radio" name="tipo" value="archivo_monto" />
-      Disposición de Archivo Liminar – Monto Mínimo - Fraude Informático
-    </label>
-  </section>
+  <p class="hint">
+    El despacho seleccionado se insertará automáticamente en el encabezado del documento.
+  </p>
+</section>
 
-  <!-- BLOQUE 4: ACCIÓN -->
+<!-- BLOQUE 3.1: FISCAL RESPONSABLE -->
+<section class="card">
+  <h2>👤 Fiscal responsable</h2>
+
+  <input
+    type="text"
+    id="fiscalInput"
+    placeholder="Ejemplo: Juan Pérez Gómez"
+  />
+
+  <p class="hint">
+    Nombre del fiscal responsable que figurará en el encabezado del documento.
+  </p>
+</section>
+
+  <!-- BLOQUE 4: TIPO DE DISPOSICIÓN -->
+  <section class="card">
+  <h2>📄 Tipo de disposición</h2>
+
+  <select id="delitoSelect">
+    <option value="">Seleccione delito</option>
+  </select>
+
+  <select id="disposicionSelect" disabled>
+    <option value="">Seleccione disposición</option>
+  </select>
+
+  <p class="hint">
+    Solo se muestran las disposiciones disponibles para el delito elegido.
+  </p>
+</section>
+
+  <!-- BLOQUE 5: ACCIÓN -->
   <section class="actions">
     <button id="btnGenerar" class="primary">
       ⚙️ Generar documento Word
     </button>
   </section>
 
-  <!-- BLOQUE 5: ESTADO -->
+  <!-- BLOQUE 6: ESTADO -->
   <section class="card">
     <h2>📊 Estado</h2>
     <pre id="estado">Esperando acción…</pre>
