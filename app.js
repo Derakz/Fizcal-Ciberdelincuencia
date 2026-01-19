@@ -200,6 +200,35 @@ async function generarWord(datos, template, nombre) {
   doc.render();
   saveAs(doc.getZip().generate({ type: "blob" }), nombre);
 }
+/**************************************
+ * PDF → TEXTO
+ **************************************/
+pdfInput.onchange = async () => {
+  const file = pdfInput.files[0];
+  if (!file) return;
+
+  estado.textContent = "📄 Procesando PDF…";
+
+  const reader = new FileReader();
+
+  reader.onload = async function () {
+    const typedarray = new Uint8Array(this.result);
+
+    const pdf = await pdfjsLib.getDocument(typedarray).promise;
+
+    let texto = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      texto += content.items.map(item => item.str).join(" ") + "\n";
+    }
+
+    caseInput.value = texto;
+    estado.textContent = "✅ PDF cargado correctamente.";
+  };
+
+  reader.readAsArrayBuffer(file);
+};
 
 /**************************************
  * BOTÓN PRINCIPAL
