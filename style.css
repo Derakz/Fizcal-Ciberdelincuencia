@@ -349,3 +349,11 @@ body.dark .card input[type="text"] {
 body.dark .card input[type="text"]::placeholder {
   color: #6b7280;
 }
+.remember-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
